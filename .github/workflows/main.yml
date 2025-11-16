@@ -6,14 +6,14 @@ on:
         
 
 jobs:
-    extract:
+  extract:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
             - run: python e.py
 
 
-     transform:
+  transform:
         needs: extract
         runs-on: ubuntu-latest
         steps:
@@ -21,7 +21,7 @@ jobs:
             - run: python t.py
 
 
-     load:
+  load:
         needs: transform
         runs-on: ubuntu-latest
         steps:
