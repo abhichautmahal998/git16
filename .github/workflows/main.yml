@@ -6,12 +6,25 @@ on:
         
 
 jobs:
-      job-demo:
+    extract:
         runs-on: ubuntu-latest
         steps:
-            - name: checkout code
-              uses: actions/checkout@v4
+            - uses: actions/checkout@v4
+            - run: python e.py
 
 
-            - name: print message
-              run: echo "welcome to github actions"
+     transform:
+        needs: extract
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: python t.py
+
+
+     load:
+        needs: transform
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: python l.py
+            
